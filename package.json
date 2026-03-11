@@ -1,0 +1,64 @@
+{
+  "name": "gitsafe",
+  "displayName": "GitSafe",
+  "publisher": "gitmen",
+  "description": "Understand git commands before you run them. Plain-English explanations and warnings for destructive operations.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["git", "safety", "beginner", "terminal", "explain"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitsafe.explainCommand",
+        "title": "GitSafe: Explain a Git Command"
+      },
+      {
+        "command": "gitsafe.showCheatSheet",
+        "title": "GitSafe: Show Command Cheat Sheet"
+      },
+      {
+        "command": "gitsafe.quickPick",
+        "title": "GitSafe: Browse All Git Commands"
+      }
+    ],
+    "configuration": {
+      "title": "GitSafe",
+      "properties": {
+        "gitsafe.enableTerminalMonitoring": {
+          "type": "boolean",
+          "default": true,
+          "description": "Make git commands in the terminal clickable"
+        },
+        "gitsafe.confirmDestructive": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show warning popup for destructive git commands"
+        },
+        "gitsafe.riskLevel": {
+          "type": "string",
+          "enum": ["all", "medium-and-above", "high-only"],
+          "default": "medium-and-above",
+          "description": "Which risk level commands become clickable links in terminal"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0",
+    "@types/node": "^18.x",
+    "typescript": "^5.x"
+  }
+}
